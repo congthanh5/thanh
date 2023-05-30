@@ -1,32 +1,61 @@
 #include <stdio.h>
+float balance = 1000.0;
+void checkBalance() {
+    printf("so du hien tai la: %.2f\n", balance);
+}
+void withdraw() {
+    float amount;
+    printf("nhap so tien muon rut: ");
+    scanf("%f", &amount);
 
-char xepLoai(float diem) {
-    if (diem >= 90) {
-        return 'A';
-    } else if (diem >= 80) {
-        return 'B';
-    } else if (diem >= 70) {
-        return 'C';
-    } else if (diem >= 60) {
-        return 'D';
+    if (amount <= balance) {
+        balance -= amount;
+        printf("gui tien thanh cong, so dư hien tại la: %.2f\n", balance);
     } else {
-        return 'F';
+        printf("so du khong du de thưc hien dao dich .\n");
     }
 }
+void deposit() {
+    float amount;
+    printf("Nhap so tien muon gui: ");
+    scanf("%f", &amount);
 
+    balance += amount;
+    printf("gui tien thanh cong, so dư hien tại la: %.2f\n", balance);
+}
 int main() {
-    int soSinhVien;
-    printf("Nhap so luong sinh vien: ");
-    scanf("%d", &soSinhVien);
+    char choice;
 
-    float diem;
-    for (int i = 1; i <= soSinhVien; i++) {
-        printf("Nhap diem cua sinh vien %d: ", i);
-        scanf("%f", &diem);
+    do {
+        printf("MENU:\n");
+        printf("a. kiem tra so du\n");
+        printf("b. rut tien\n");
+        printf("c. gui tien\n");
+        printf("d. thoat\n");
+        printf("chon 1 lua chon: ");
+        scanf(" %c", &choice);
 
-        char loai = xepLoai(diem);
-        printf("Sinh vien %d - Xep loai: %c\n", i, loai);
-    }
+        switch (choice) {
+            case 'a':
+                checkBalance();
+                break;
+            case 'b':
+                withdraw();
+                break;
+            case 'c':
+                deposit();
+                break;
+            case 'd':
+                printf("thoat kho chuong trinh.\n");
+                break;
+            default:
+                printf("lua chon khong hop le vui long nhap lai\n");
+                break;
+        }
+
+        printf("\n");
+    } while (choice != 'd');
 
     return 0;
 }
+
