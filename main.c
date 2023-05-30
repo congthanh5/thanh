@@ -1,24 +1,32 @@
 #include <stdio.h>
 
-float tinhDienTich(float chieuDai, float chieuRong) {
-    float dienTich = chieuDai * chieuRong;
-    return dienTich;
-}
-
-float tinhChuVi(float chieuDai, float chieuRong) {
-    float chuVi = (chieuDai + chieuRong) * 2;
-    return chuVi;
+char xepLoai(float diem) {
+    if (diem >= 90) {
+        return 'A';
+    } else if (diem >= 80) {
+        return 'B';
+    } else if (diem >= 70) {
+        return 'C';
+    } else if (diem >= 60) {
+        return 'D';
+    } else {
+        return 'F';
+    }
 }
 
 int main() {
-    float chieuDai, chieuRong;
-    printf("Nhap chieu dai hinh chu nhat: ");
-    scanf("%f", &chieuDai);
-    printf("Nhap chieu rong hinh chu nhat: ");
-    scanf("%f", &chieuRong);
-    float dienTich = tinhDienTich(chieuDai, chieuRong);
-    float chuVi = tinhChuVi(chieuDai, chieuRong);
-    printf("Dien tich hinh chu nhat la: %0.2f\n", dienTich);
-    printf("Chu vi hinh chu nhat la: %0.2f", chuVi);
+    int soSinhVien;
+    printf("Nhap so luong sinh vien: ");
+    scanf("%d", &soSinhVien);
+
+    float diem;
+    for (int i = 1; i <= soSinhVien; i++) {
+        printf("Nhap diem cua sinh vien %d: ", i);
+        scanf("%f", &diem);
+
+        char loai = xepLoai(diem);
+        printf("Sinh vien %d - Xep loai: %c\n", i, loai);
+    }
+
     return 0;
 }
